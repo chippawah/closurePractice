@@ -11,9 +11,13 @@ var outer = function(){
 
   //Code Here
 
+  var inner = outer();
+
 //Once you do that, invoke inner.
 
   //Code Here
+
+  inner();
 
 
 
@@ -34,6 +38,10 @@ var callFriend = function(){
 
   //Code Here
 
+  var calling = callFriend();
+
+  calling('435-215-9248');
+
 
 
 //Next Problem
@@ -51,7 +59,34 @@ var callFriend = function(){
   count() // 3
   count() // 4
 
+/*var makeCounter = function() {
+  var num = 0;
+  return function() {
+    num++;
+    console.log(num);
+  };
+};
 
+//Modify the above code so that the num is passed an initial value when makeCounter is invoked
+
+
+var makeCounter2 = function(firstNum) {
+  var num = firstNum;
+  return function() {
+    num++;
+    console.log(num);
+  };
+}
+
+//Modify to just use the argument that gets passed in... */
+
+var makeCounter3 = function(firstNum) {
+
+  return function() {
+    firstNum++;
+    return firstNum;
+  };
+}
 
 //Next Problem
 
@@ -64,6 +99,53 @@ var callFriend = function(){
   After the function has been called N number of times, console.log('STAHHP');
 */
 
+var outer = function(fn) {
+
+  var counter = 0;
+
+  return function() {
+
+    if(counter < 1) {
+
+      fn();
+
+      counter++
+    }
+
+  }
+
+}
+
+var test = outer(function(){
+  console.log('This only will run once');
+});
+
+
+
+var nRunner = function(fn) {
+
+  var counter = 0;
+
+  return function() {
+
+    if(counter < 3) {
+
+      fn();
+
+      counter++
+    } else {
+
+      console.log('STAHHP');
+
+    }
+
+  }
+
+}
+
+var test2 = nRunner(function(){
+  console.log('This only will run 3 times.');
+});
 
 
 
